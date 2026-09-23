@@ -1,0 +1,325 @@
+
+/* =========================================================
+   FINAL VIEWPORT / HORIZONTAL SCROLL FIX
+   ========================================================= */
+
+html,
+body,
+#root {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.nr-home {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+.nr-home *,
+.nr-home *::before,
+.nr-home *::after {
+  box-sizing: border-box;
+}
+
+.nr-home-content {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  overflow-x: hidden;
+}
+
+.nr-main-layout,
+.nr-feature-grid,
+.nr-secondary-grid,
+.nr-status-grid,
+.nr-extra-grid {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.nr-feature-card,
+.nr-secondary-card,
+.nr-extra-card,
+.nr-status-main,
+.nr-stat-box {
+  min-width: 0;
+  max-width: 100%;
+}
+
+@media (max-width: 900px) {
+  .nr-home-content {
+    overflow-x: hidden;
+  }
+
+  .nr-main-layout {
+    min-width: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .nr-home {
+    overflow-x: hidden;
+  }
+
+  .nr-home-content {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+}
+
+/* =========================================================
+   RESPONSIVE POLISH — DESKTOP / TABLET / MOBILE
+   ========================================================= */
+
+/* Large desktop */
+@media (min-width: 1400px) {
+  .nr-home-content {
+    width: min(1380px, calc(100% - 48px));
+    margin-inline: auto;
+  }
+
+  .nr-main-layout {
+    gap: 34px;
+  }
+
+  .nr-feature-grid {
+    gap: 12px;
+  }
+}
+
+/* Laptop / smaller desktop */
+@media (max-width: 1100px) {
+  .nr-home-content {
+    width: calc(100% - 32px);
+    margin-inline: auto;
+  }
+
+  .nr-main-layout {
+    gap: 22px;
+  }
+
+  .nr-feature-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .nr-secondary-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .nr-extra-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .nr-feature-card {
+    min-width: 0;
+  }
+}
+
+/* Tablet */
+@media (max-width: 800px) {
+  .nr-home-content {
+    width: calc(100% - 24px);
+  }
+
+  .nr-main-layout {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .nr-character-zone {
+    min-height: 300px;
+  }
+
+  .nr-control-zone {
+    width: 100%;
+  }
+
+  .nr-feature-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .nr-secondary-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .nr-status-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .nr-status-main {
+    grid-column: 1 / -1;
+  }
+
+  .nr-extra-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Mobile */
+@media (max-width: 560px) {
+  .nr-home-content {
+    width: calc(100% - 16px);
+    padding: 0;
+  }
+
+  .nr-topbar {
+    gap: 8px;
+  }
+
+  .nr-world-id {
+    display: none;
+  }
+
+  .nr-profile-mini {
+    margin-left: auto;
+  }
+
+  .nr-brand h1 {
+    font-size: clamp(38px, 13vw, 64px);
+    line-height: .9;
+  }
+
+  .nr-brand p {
+    font-size: 7px;
+    letter-spacing: .12em;
+  }
+
+  .nr-main-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .nr-character-zone {
+    min-height: 250px;
+  }
+
+  .nr-feature-grid,
+  .nr-secondary-grid,
+  .nr-extra-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .nr-feature-card {
+    min-height: 76px;
+  }
+
+  .nr-secondary-card {
+    min-height: 62px;
+  }
+
+  .nr-extra-card {
+    min-height: 78px;
+  }
+
+  .nr-status-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .nr-status-main {
+    grid-column: auto;
+  }
+
+  .nr-stat-box {
+    min-height: 76px;
+  }
+
+  .nr-bottom-bar {
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+/* Very small phones */
+@media (max-width: 380px) {
+  .nr-home-content {
+    width: calc(100% - 12px);
+  }
+
+  .nr-character-zone {
+    min-height: 220px;
+  }
+
+  .nr-level-panel {
+    padding: 12px;
+  }
+
+  .nr-start-btn {
+    min-height: 86px;
+  }
+
+  .nr-start-btn strong {
+    font-size: 25px;
+  }
+
+  .nr-daily-btn {
+    min-height: 54px;
+  }
+
+  .nr-feature-card {
+    padding: 12px;
+  }
+
+  .nr-secondary-card {
+    padding: 10px;
+  }
+}
+
+/* =========================================================
+   HARD VIEWPORT OVERFLOW LOCK
+   Prevent 100vw / fixed-width children from creating
+   browser-level horizontal scrolling.
+   ========================================================= */
+
+html,
+body,
+#root,
+main {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  overflow-x: hidden !important;
+}
+
+main {
+  box-sizing: border-box !important;
+}
+
+.nr-home {
+  position: relative;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  overflow-x: hidden !important;
+}
+
+.nr-home-content {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  overflow-x: hidden !important;
+}
+
+/* Keep decorative elements from expanding document width */
+.nr-noise,
+.nr-grid,
+.nr-scanlines,
+.nr-city-glow {
+  max-width: 100vw;
+  pointer-events: none;
+}
+
+/* Prevent flex/grid children from forcing parent width */
+.nr-home-content > *,
+.nr-main-layout > *,
+.nr-feature-grid > *,
+.nr-secondary-grid > *,
+.nr-status-grid > *,
+.nr-extra-grid > * {
+  min-width: 0 !important;
+  max-width: 100% !important;
+}
