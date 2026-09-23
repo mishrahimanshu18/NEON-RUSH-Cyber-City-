@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { NeonRush3D } from './game/three/NeonRush3D';
+import { initCrazyGames, crazyGameplayStart, crazyGameplayStop } from './platforms/crazygames/sdk';
 import HomeScreen from './components/home/HomeScreen';
 import { ProfileScreen } from './components/ProfileScreen';
 import { useGameStore, loadPlayer } from './game/store';
@@ -21,6 +22,10 @@ type Result = {
 };
 
 function App() {
+  useEffect(() => {
+    void initCrazyGames();
+  }, []);
+
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const gameRef = useRef<NeonRush3D | null>(null);
   const { player, completeRun, claimDailyReward, canClaimDaily, consumeEnergy } = useGameStore();
@@ -204,6 +209,7 @@ function App() {
         },
 
         onGameOver: (data) => {
+    crazyGameplayStop();
           
           const previousLevel = player.level;
           const projectedXP = player.xp + data.xp;
@@ -276,6 +282,7 @@ completeRun(data);
 
     gameRef.current = game;
     game.start();
+  crazyGameplayStart();
   }, [unlockAchievement, completeRun, consumeEnergy]);
 
   useEffect(() => {
@@ -882,6 +889,7 @@ function Stat({
 }
 
 export default App;
+
 
 
 
